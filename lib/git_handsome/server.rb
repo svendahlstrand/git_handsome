@@ -1,4 +1,7 @@
 require 'git_handsome'
+require 'erubis'
+
+set :erubis, :escape_html => true
 
 get '/' do
   commits = GitHandsome::log
@@ -21,5 +24,5 @@ get '/' do
 
   @repository_name = Dir.pwd.split('/').last
 
-  erb :index
+  erubis :index
 end

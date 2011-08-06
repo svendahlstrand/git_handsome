@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     git_handsome (0.0.1)
+      erubis
       launchy
       sinatra
 
@@ -9,6 +10,7 @@ GEM
   remote: http://rubygems.org/
   specs:
     addressable (2.2.6)
+    erubis (2.7.0)
     launchy (2.0.5)
       addressable (~> 2.2.6)
     rack (1.3.2)

@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
   <link rel="stylesheet" type="text/css" href="/css/jquery.jqplot.min.css" />
 
   <title><%= @repository_name %> - Git Handsome</title>
@@ -11,12 +11,14 @@
   <div id="chart2" style="float:right; width:600px;"></div>
 
   <h1><%= @repository_name %></h1>
-  <% @commits_by_day.each do |day, commits| %>
-    <h2><%= day %></h2>
-    <% commits.each do |commit| %>
-      <li><%= commit['date'] %>: <%= commit['subject'] %></li>
+  <ul>
+    <% @commits_by_day.each do |day, commits| %>
+      <h2><%= day %></h2>
+      <% commits.each do |commit| %>
+        <li><%= commit['date'] %>: <%= commit['subject'] %></li>
+      <% end %>
     <% end %>
-  <% end %>
+  </ul>
 
   <!--[if lt IE 9]><script language="javascript" type="text/javascript" src="/js/excanvas.min.js"></script><![endif]-->
   <script language="javascript" type="text/javascript" src="/js/jquery.min.js"></script>
@@ -30,7 +32,7 @@
 
   <script type="text/javascript">
       $(document).ready(function(){
-        var line1=<%= @commits_per_day %>;
+        var line1=<%== @commits_per_day %>;
         var plot1 = $.jqplot('chart1', [line1], {
             title: 'Commits per day',
             series:[{renderer:$.jqplot.BarRenderer}],
@@ -48,7 +50,7 @@
             }
           });
 
-          var data = <%= @commits_by_author %>;
+          var data = <%== @commits_by_author %>;
           var plot2 = jQuery.jqplot ('chart2', [data], 
             {
               title: 'Commits by author',
