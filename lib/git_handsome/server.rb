@@ -1,7 +1,7 @@
-require 'handsome_git'
+require 'git_handsome'
 
 get '/' do
-  commits = HandsomeGit::log
+  commits = GitHandsome::log
 
   @commits_by_day = commits.group_by do |commit|
     Date.parse commit["date"]

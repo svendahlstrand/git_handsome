@@ -1,7 +1,9 @@
 #!/usr/bin/env ruby
 
 require 'rack'
+require 'launchy'
 
 CONFIG_RU_PATH = File.expand_path('../../config.ru', __FILE__)
 
+Launchy.open 'http://localhost:9393'
 Rack::Server.start config: CONFIG_RU_PATH, Port: 9393
