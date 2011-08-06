@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+require 'rack'
+
+CONFIG_RU_PATH = File.expand_path('../../config.ru', __FILE__)
+
+Rack::Server.start config: CONFIG_RU_PATH, Port: 9393

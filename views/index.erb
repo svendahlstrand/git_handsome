@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="/css/jquery.jqplot.min.css" />
+
+  <title>index</title>  
+</head>
+<body id="index" onload="">
+  <div id="chart1" style="margin-bottom: 50px;"></div>
+  <div id="chart2" style="float:right; width:600px;"></div>
+
+  <h1>History</h1>
+  <% @commits_by_day.each do |day, commits| %>
+    <h2><%= day %></h2>
+    <% commits.each do |commit| %>
+      <li><%= commit['date'] %>: <%= commit['subject'] %></li>
+    <% end %>
+  <% end %>
+
+  <!--[if lt IE 9]><script language="javascript" type="text/javascript" src="/js/excanvas.min.js"></script><![endif]-->
+  <script language="javascript" type="text/javascript" src="/js/jquery.min.js"></script>
+  <script language="javascript" type="text/javascript" src="/js/jquery.jqplot.min.js"></script>
+  <script type="text/javascript" src="/js/plugins/jqplot.dateAxisRenderer.min.js"></script>
+  <script type="text/javascript" src="/js/plugins/jqplot.canvasTextRenderer.min.js"></script>
+  <script type="text/javascript" src="/js/plugins/jqplot.canvasAxisTickRenderer.min.js"></script>
+  <script type="text/javascript" src="/js/plugins/jqplot.categoryAxisRenderer.min.js"></script>
+  <script type="text/javascript" src="/js/plugins/jqplot.barRenderer.min.js"></script>
+  <script type="text/javascript" src="/js/plugins/jqplot.pieRenderer.min.js"></script>
+
+  <script type="text/javascript">
+      $(document).ready(function(){
+        var line1=<%= @commits_per_day %>;
+        var plot1 = $.jqplot('chart1', [line1], {
+            title: 'Commits per day',
+            series:[{renderer:$.jqplot.BarRenderer}],
+            axesDefaults: {
+                tickRenderer: $.jqplot.CanvasAxisTickRenderer ,
+                tickOptions: {
+                  angle: -30,
+                  fontSize: '10pt'
+                }
+            },
+            axes: {
+              xaxis: {
+                renderer: $.jqplot.CategoryAxisRenderer
+              }
+            }
+          });
+
+          var data = <%= @commits_by_author %>;
+          var plot2 = jQuery.jqplot ('chart2', [data], 
+            {
+              title: 'Commits by author',
+              seriesDefaults: {
+                // Make this a pie chart.
+                renderer: jQuery.jqplot.PieRenderer, 
+                rendererOptions: {
+                  // Put data labels on the pie slices.
+                  // By default, labels show the percentage of the slice.
+                  showDataLabels: true
+                }
+              }, 
+              legend: { show:true, location: 'e' }
+            }
+          );
+      });
+  </script>
+</body>
+</html>
