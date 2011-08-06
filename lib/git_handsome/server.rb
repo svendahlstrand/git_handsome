@@ -1,3 +1,4 @@
+require 'date'
 require 'git_handsome'
 require 'erubis'
 
