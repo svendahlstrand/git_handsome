@@ -4,13 +4,13 @@
   <meta http-equiv="Content-type" content="text/html; charset=utf-8">
   <link rel="stylesheet" type="text/css" href="/css/jquery.jqplot.min.css" />
 
-  <title>Git Handsome</title>
+  <title><%= @repository_name %> - Git Handsome</title>
 </head>
 <body id="index" onload="">
   <div id="chart1" style="margin-bottom: 50px;"></div>
   <div id="chart2" style="float:right; width:600px;"></div>
 
-  <h1>History</h1>
+  <h1><%= @repository_name %></h1>
   <% @commits_by_day.each do |day, commits| %>
     <h2><%= day %></h2>
     <% commits.each do |commit| %>

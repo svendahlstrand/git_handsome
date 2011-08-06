@@ -19,5 +19,7 @@ get '/' do
     [author, commits.count]
   end.reverse.to_s
 
+  @repository_name = Dir.pwd.split('/').last
+
   erb :index
 end
