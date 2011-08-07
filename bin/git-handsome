@@ -2,8 +2,21 @@
 
 require 'rack'
 require 'launchy'
+require 'net/http'
 
 CONFIG_RU_PATH = File.expand_path('../../config.ru', __FILE__)
+PORT = 9393
 
-Launchy.open 'http://localhost:9393'
-Rack::Server.start config: CONFIG_RU_PATH, Port: 9393
+Thread.new do
+  begin
+    Net::HTTP.start 'localhost', PORT do |http|
+      http.head '/'
+      Launchy.open "http://localhost:#{PORT}"
+    end
+  rescue
+    sleep 1
+    retry
+  end
+end
+
+Rack::Server.start config: CONFIG_RU_PATH, Port: PORT
