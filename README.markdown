@@ -19,9 +19,3 @@ Usage
 
 This opens your browser on [http://localhost:9393](http://localhost:9393) for
 some graph goodies.
-
-Known issues
-------------
-
-If your computer is super fast the browser may open before the server has a
-chance to start. Just hit the refresh button and you will be on your way.
